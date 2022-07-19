@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274F080A2886C3F10022C052 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F08092886C3F10022C052 /* ContentView-ViewModel.swift */; };
+		275F466F28869461006763C6 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F466E28869461006763C6 /* FileManager-DocumentsDirectory.swift */; };
+		275F467228869510006763C6 /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F467128869510006763C6 /* Dice.swift */; };
+		275F46932886A09D006763C6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F46922886A09D006763C6 /* DataManager.swift */; };
+		275F46952886A663006763C6 /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F46942886A663006763C6 /* Roll.swift */; };
+		275F469A2886AAE6006763C6 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F46992886AAE6006763C6 /* Turn.swift */; };
 		27E6F1172885988E00427F5B /* HighRollersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6F1162885988E00427F5B /* HighRollersApp.swift */; };
 		27E6F1192885988E00427F5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6F1182885988E00427F5B /* ContentView.swift */; };
 		27E6F11B2885988F00427F5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27E6F11A2885988F00427F5B /* Assets.xcassets */; };
@@ -15,6 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		274F08092886C3F10022C052 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		275F466E28869461006763C6 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
+		275F467128869510006763C6 /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
+		275F46922886A09D006763C6 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		275F46942886A663006763C6 /* Roll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
+		275F46992886AAE6006763C6 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
 		27E6F1132885988E00427F5B /* HighRollers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HighRollers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E6F1162885988E00427F5B /* HighRollersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighRollersApp.swift; sourceTree = "<group>"; };
 		27E6F1182885988E00427F5B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +46,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		274F080B2886C3F50022C052 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				274F08092886C3F10022C052 /* ContentView-ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		275F466D2886944D006763C6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				275F466E28869461006763C6 /* FileManager-DocumentsDirectory.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		275F467028869505006763C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				275F46962886A6FE006763C6 /* Enum */,
+				275F46942886A663006763C6 /* Roll.swift */,
+				275F46992886AAE6006763C6 /* Turn.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		275F46962886A6FE006763C6 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				275F467128869510006763C6 /* Dice.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		275F46982886A70B006763C6 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				275F46922886A09D006763C6 /* DataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 		27E6F10A2885988E00427F5B = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +107,10 @@
 		27E6F1152885988E00427F5B /* HighRollers */ = {
 			isa = PBXGroup;
 			children = (
+				274F080B2886C3F50022C052 /* ViewModel */,
+				275F46982886A70B006763C6 /* DataManager */,
+				275F466D2886944D006763C6 /* Extension */,
+				275F467028869505006763C6 /* Model */,
 				27E6F1242885A0EF00427F5B /* View */,
 				27E6F1162885988E00427F5B /* HighRollersApp.swift */,
 				27E6F11A2885988F00427F5B /* Assets.xcassets */,
@@ -149,8 +207,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275F467228869510006763C6 /* Dice.swift in Sources */,
+				275F46932886A09D006763C6 /* DataManager.swift in Sources */,
+				275F46952886A663006763C6 /* Roll.swift in Sources */,
+				275F466F28869461006763C6 /* FileManager-DocumentsDirectory.swift in Sources */,
 				27E6F1192885988E00427F5B /* ContentView.swift in Sources */,
+				274F080A2886C3F10022C052 /* ContentView-ViewModel.swift in Sources */,
 				27E6F1172885988E00427F5B /* HighRollersApp.swift in Sources */,
+				275F469A2886AAE6006763C6 /* Turn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
