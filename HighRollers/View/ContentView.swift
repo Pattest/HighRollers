@@ -23,29 +23,31 @@ struct ContentView: View {
                 }, onDecrement: {
                     viewModel.removeLastRoll()
                 })
+                .allowsHitTesting(viewModel.timerIsPaused)
                 
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(viewModel.rolls, id: \.id) { roll in
-                            Text("D\(roll.dice.rawValue)")
-                                .font(.largeTitle)
-                                .padding()
-                                .frame(width: 120, height: 120)
-                                .background(roll.dice.color)
-                                .cornerRadius(10)
-                                .contextMenu {
-                                    ForEach(0..<Dice.allCases.count, id: \.self) { indexDice in
-                                        let newDice = Dice.allCases[indexDice]
-                                        Button {
-                                            Task { @MainActor in
-                                                viewModel.updateDiceRoll(roll, with: newDice)
-                                            }
-                                        } label: {
-                                            Label("D\(newDice.rawValue)",
-                                                  systemImage: "dice")
-                                        }
+                            ZStack {
+                                Text("\(roll.getResult())")
+                                    .font(.largeTitle)
+                                Text("D\(roll.dice.rawValue)")
+                                    .font(.caption)
+                                    .position(.zero)
+                            }
+                            .font(.largeTitle)
+                            .padding()
+                            .frame(width: 120, height: 120)
+                            .background(roll.dice.color)
+                            .cornerRadius(10)
+                            .contextMenu {
+                                ForEach(0..<Dice.allCases.count, id: \.self) { indexDice in
+                                    let newDice = Dice.allCases[indexDice]
+                                    Button("D\(newDice.rawValue)") {
+                                        viewModel.updateDiceRoll(roll, with: newDice)
                                     }
                                 }
+                            }
                         }
                     }
                 }
@@ -53,6 +55,7 @@ struct ContentView: View {
                 Button("Roll dice(s)") {
                     viewModel.rollDices()
                 }
+                .allowsHitTesting(viewModel.timerIsPaused)
             }
             .padding()
             
@@ -84,11 +87,6 @@ struct ContentView: View {
             Button("Reset turn list") {
                 viewModel.resetTurns()
             }
-        }
-        .onAppear {
-            viewModel.turns = DataManager.loadTurns()
-            viewModel.prepareRolls()
-            viewModel.prepareHaptics()
         }
     }
 }

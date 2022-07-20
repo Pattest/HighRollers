@@ -12,21 +12,50 @@ extension ContentView {
 
     @MainActor class ViewModel: ObservableObject {
 
+        private var timer: Timer?
+        var timerIsPaused: Bool = true
+
         @Published var rolls = [Roll]()
         @Published var turns = [Turn]()
 
         @Published private var engine: CHHapticEngine?
 
-        func rollDices() {
-            for roll in self.rolls {
-                roll.timeToRoll()
-            }
+        init() {
+            turns = DataManager.loadTurns()
 
-            let turn = Turn(rolls: rolls)
             prepareRolls()
+            prepareHaptics()
+        }
+
+        func rollDices() {
+            var count = 0
+
+            timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { resultTimer in
+                for roll in self.rolls {
+                    self.objectWillChange.send()
+                    roll.timeToRoll()
+                }
+
+                count += 1
+
+                if count == 5 {
+                    resultTimer.invalidate()
+                    self.rollsAreDone()
+                    self.timerIsPaused = true
+                }
+            }
+        }
+
+        func rollsAreDone() {
+            playHaptics()
+
+            //
+            let turn = Turn(rolls: rolls)
             turns.append(turn)
             saveTurns(turns)
-            playHaptics()
+
+            // Flush rolls
+            prepareRolls()
         }
 
         func resetTurns() {
