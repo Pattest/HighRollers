@@ -11,17 +11,15 @@ import CoreHaptics
 extension ContentView {
 
     @MainActor class ViewModel: ObservableObject {
-        @Published var numberOfDevices: Int = 1
+
         @Published var rolls = [Roll]()
         @Published var turns = [Turn]()
 
         @Published private var engine: CHHapticEngine?
 
         func rollDices() {
-            for roll in rolls {
-                for _ in 0..<5 {
-                    roll.timeToRoll()
-                }
+            for roll in self.rolls {
+                roll.timeToRoll()
             }
 
             let turn = Turn(rolls: rolls)
@@ -56,6 +54,12 @@ extension ContentView {
             guard rolls.count > 1 else { return }
             rolls.removeLast()
         }
+
+        func updateDiceRoll(_ roll: Roll, with newDice: Dice) {
+            objectWillChange.send()
+            roll.dice = newDice
+        }
+
         // MARK: - Haptics
 
         func prepareHaptics() {

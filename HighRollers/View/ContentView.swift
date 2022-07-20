@@ -27,24 +27,25 @@ struct ContentView: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(viewModel.rolls, id: \.id) { roll in
-                            ZStack {
-                                Text("\(roll.getResult())")
-                                    .font(.largeTitle)
-                                Text("D\(roll.dice.rawValue)")
-                                    .font(.caption)
-                                    .position(x: 0, y: 0)
-                            }
-                            .padding()
-                            .frame(width: 100, height: 100)
-                            .background(roll.dice.color)
-                            .contextMenu {
-                                ForEach(0..<Dice.allCases.count, id: \.self) { indexDice in
-                                    let newDice = Dice.allCases[indexDice]
-                                    Button("D\(newDice.rawValue)") {
-                                        roll.dice = newDice
+                            Text("D\(roll.dice.rawValue)")
+                                .font(.largeTitle)
+                                .padding()
+                                .frame(width: 120, height: 120)
+                                .background(roll.dice.color)
+                                .cornerRadius(10)
+                                .contextMenu {
+                                    ForEach(0..<Dice.allCases.count, id: \.self) { indexDice in
+                                        let newDice = Dice.allCases[indexDice]
+                                        Button {
+                                            Task { @MainActor in
+                                                viewModel.updateDiceRoll(roll, with: newDice)
+                                            }
+                                        } label: {
+                                            Label("D\(newDice.rawValue)",
+                                                  systemImage: "dice")
+                                        }
                                     }
                                 }
-                            }
                         }
                     }
                 }
@@ -71,8 +72,9 @@ struct ContentView: View {
                                         .position(.zero)
                                 }
                                 .padding()
-                                .background(roll.dice.color)
                                 .frame(width: 100, height: 100)
+                                .background(roll.dice.color)
+                                .cornerRadius(10)
                             }
                         }
                     }
