@@ -86,6 +86,7 @@ struct ContentView: View {
         .onAppear {
             viewModel.turns = DataManager.loadTurns()
             viewModel.prepareRolls()
+            viewModel.prepareHaptics()
         }
     }
 }

@@ -107,10 +107,10 @@
 		27E6F1152885988E00427F5B /* HighRollers */ = {
 			isa = PBXGroup;
 			children = (
-				274F080B2886C3F50022C052 /* ViewModel */,
 				275F46982886A70B006763C6 /* DataManager */,
 				275F466D2886944D006763C6 /* Extension */,
 				275F467028869505006763C6 /* Model */,
+				274F080B2886C3F50022C052 /* ViewModel */,
 				27E6F1242885A0EF00427F5B /* View */,
 				27E6F1162885988E00427F5B /* HighRollersApp.swift */,
 				27E6F11A2885988F00427F5B /* Assets.xcassets */,
